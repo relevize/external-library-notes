@@ -58,62 +58,68 @@ ShiftTasks Table
 
 
 ## FAQ (frequently asked queries 🤣)
-The "definition" section of each item below is directly from the [tutorial docs](https://docs.sqlalchemy.org/en/12/orm/tutorial.html).
+The `DEFINITION:` sections of each item below is directly from the [tutorial docs](https://docs.sqlalchemy.org/en/12/orm/tutorial.html). If they are `Nathan DEFINITION:` then take it with a few grains of salt...
 
 ### Getting Data
 * `.all()`
     * a
-    * b
+    * `User.query.filter_by(name="tsuki").all()`
 * `.get(<primary_key>)`
-    * Return an instance based on the given primary key identifier, or None if not found.
+    * `DEFINITION:` Return an instance based on the given primary key identifier, or None if not found.
     * `User.query.get(42)`
 * `.count()`
     * a
-    * b
+    * `User.query.count()`
 * `.limit()`
     * a
-    * b
+    * `User.query.limit(25)`
 * `.offset()`
     * a
-    * b
+    * `User.query.offset(2).limit(25)`
 
 ### Filtering Data
 * `.filter_by()`
-    * a
+    * `Nathan DEFINITION:` seems to be used for quering for direct column values
     * `User.query.filter_by(name="tsuki")`
 * `.filter()`
-    * a
+    * `Nathan DEFINITION:` seems to be used for more robust queries
     * `User.query.filter(User.id == Logs.user_id)`
 * Filtering with the `LIKE` operator
     * `User.query.filter(User.name.like('%ed%'))` - if the `%` symbol looks foreign to you, go google postgres like operators to get a better understanding of the syntax.
 
 ### Getting One (or None) Items
 * `.first()`
-    * applies a limit of one and returns the first result
+    * `DEFINITION:` applies a limit of one and returns the first result
     * `User.query.get(42).first()`
 * `.one()`
-    * fully fetches all rows, and if not exactly one object identity or composite row is present in the result, raises an error.
+    * `DEFINITION:` fully fetches all rows, and if not exactly one object identity or composite row is present in the result, raises an error.
     * `User.query.get(42).one()`
 * `.one_or_none()`
-    * `.one_or_none()` is like Query.one(), except that if no results are found, it doesn’t raise an error; it just returns None. Like Query.one(), however, it does raise an error if multiple results are found.
-    *  `User.query.filter_by(id == 42).one_or_none()`
+    * `DEFINITION:` `.one_or_none()` is like Query.one(), except that if no results are found, it doesn’t raise an error; it just returns None. Like Query.one(), however, it does raise an error if multiple results are found.
+    *  `User.query.filter_by(id=42).one_or_none()`
 
 ### Ordering Data
-
 * `.order_by()`
     * a
-    * b
+    * `User.query.order_by(created_at)`
 * `.group_by()`
     * a
     * b
 
 ### Create Data
 
-### updating Data
+### Updating Data
+Updating seems to be a multi-step process, where you first must find the item you want to update, then update it.
+```py
+tsuki = User.query.filter_by(name="tsuki")
+tsuki.rank = "Captain"
+```
 
-### deleting Data
-
+### Deleting Data
 * `.delete()`
+    * a
+    * `User.query.filter_by(id=42).delete()`
+* `.delete_all_assc_for()`
     * a
     * b
 
