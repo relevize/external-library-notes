@@ -25,12 +25,13 @@ def get_some_data(user_obj):
 
 # SQLAlchemy
 
-Description + link to docs
-THESE NOTES ARE SPECIFICALLY FOR VERSION ___. 
-CHECK THE RELEVIZE PROJECT VERSION OF SQLALCHEMY, as these notes may become outdated.
+`SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.`
 
-table examples
-Captains Log - just some tables that let us play with queries
+[v1.2 Docs](https://docs.sqlalchemy.org/en/12/)
+
+These notes are specifically for the version listed above. Consult the Relevize project to be sure these docs are not out of date at the time of reading this.
+
+Example Tables
 
 Logs | Users | DailyTasks
 
@@ -55,18 +56,76 @@ ShiftTasks Table
 | 22     | 2        | False      | tristique et   |
 | 33     | 3        | False      | volutpat odio  |
 
-### getting data
-get, get_first, get_first_or_none
+
+## FAQ (frequently asked queries 🤣)
+The "definition" section of each item below is directly from the [tutorial docs](https://docs.sqlalchemy.org/en/12/orm/tutorial.html).
+
+### Getting Data
+* `.all()`
+    * a
+    * b
+* `.get(<primary_key>)`
+    * Return an instance based on the given primary key identifier, or None if not found.
+    * `User.query.get(42)`
+* `.count()`
+    * a
+    * b
+* `.limit()`
+    * a
+    * b
+* `.offset()`
+    * a
+    * b
+
+### Filtering Data
+* `.filter_by()`
+    * a
+    * `User.query.filter_by(name="tsuki")`
+* `.filter()`
+    * a
+    * `User.query.filter(User.id == Logs.user_id)`
+* Filtering with the `LIKE` operator
+    * `User.query.filter(User.name.like('%ed%'))` - if the `%` symbol looks foreign to you, go google postgres like operators to get a better understanding of the syntax.
+
+### Getting One (or None) Items
+* `.first()`
+    * applies a limit of one and returns the first result
+    * `User.query.get(42).first()`
+* `.one()`
+    * fully fetches all rows, and if not exactly one object identity or composite row is present in the result, raises an error.
+    * `User.query.get(42).one()`
+* `.one_or_none()`
+    * `.one_or_none()` is like Query.one(), except that if no results are found, it doesn’t raise an error; it just returns None. Like Query.one(), however, it does raise an error if multiple results are found.
+    *  `User.query.filter_by(id == 42).one_or_none()`
+
+### Ordering Data
+
+* `.order_by()`
+    * a
+    * b
+* `.group_by()`
+    * a
+    * b
+
+### Create Data
+
+### updating Data
+
+### deleting Data
+
+* `.delete()`
+    * a
+    * b
 
 ### joining tables
 
-### "where clause" (filter and filter_by)
 
-### 
 
 # Marshmallow
 
-Description + link to docs
+`marshmallow is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes.`
+
+[v3 Docs](https://marshmallow.readthedocs.io/en/stable/)
 
 Explain how it relates with a model
 
@@ -100,6 +159,9 @@ class ExampleSchema(Schema):
 ```
 
 
-# APISPEC (doc, marshal_with, use_kwargs)
+# API_SPEC (doc, marshal_with, use_kwargs)
 
-Description + link to docs
+`flask-apispec is a lightweight tool for building REST APIs in Flask. flask-apispec uses webargs for request parsing, marshmallow for response formatting, and apispec to automatically generate Swagger markup. You can use flask-apispec with vanilla Flask or a fuller-featured framework like Flask-RESTful.`
+
+These are the [flask-apispec docs](https://flask-apispec.readthedocs.io/en/latest/). These are the [apispec docs](https://pypi.org/project/apispec/), whos api reference can be used.
+
