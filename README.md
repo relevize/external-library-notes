@@ -34,10 +34,26 @@ Captains Log - just some tables that let us play with queries
 
 Logs | Users | DailyTasks
 
-| Item         | Price     | # In stock |
-|--------------|-----------|------------|
-| Juicy Apples | 1.99      | *7*        |
-| Bananas      | **1.89**  | 5234       |
+Users Table
+| id     | name             | rank                 |
+|--------|------------------|----------------------|
+| 1      | Bradward Boimler | Ensign               |
+| 2      | Data             | Lieutenant Commander |
+| 3      | Christopher Pike | Captain              |
+
+Logs Table
+| id     | user_id  | content              |
+|--------|----------|----------------------|
+| 11     | 1        | dui accumsan         |
+| 22     | 2        | aliquet eget         |
+| 33     | 3        | rutrum quisque       |
+
+ShiftTasks Table
+| id     | user_id  | completed  | task           |
+|--------|----------|------------|----------------|
+| 11     | 1        | True       | malesuada nunc |
+| 22     | 2        | False      | tristique et   |
+| 33     | 3        | False      | volutpat odio  |
 
 ### getting data
 get, get_first, get_first_or_none
